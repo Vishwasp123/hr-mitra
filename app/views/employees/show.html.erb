@@ -1,0 +1,57 @@
+<div class="col-lg-12">
+  <div class="card rounded-0 mt-5 mb-5">
+    <div class="card-body mx-5">
+      <h2 class="text-center border w-50 mx-auto ">Employee Details</h2>
+      <div class="row ">
+        <div class="col-lg-6 mt-3">
+          <h3>Personal Information</h3>
+          <p class="lead"><strong>First Name:</strong> <%= @employee.first_name %></p>
+          
+          <p class="lead"><strong>Last Name:</strong> <%=@employee.last_name %></p>
+          <p class="lead"><strong> Email:</strong> <%=@employee.personal_email %></p>
+        </div>
+        <div class="col-lg-6 mt-3">
+          <h3>Address Information</h3>
+          <p class="lead"><strong>Address:</strong> <%= @employee.address_line_1 %></p>
+         ss
+          <p class="lead"><strong>City:</strong> <%=@employee.city %></p>
+          <p class="lead"><strong> State:</strong> <%=@employee.state %></p>
+          <p class="lead"><strong> Pincode:</strong> <%=@employee.pincode %></p>
+          <p class="lead"><strong>date_of_brith</strong> <%=@employee.date_of_brith %></p>
+          <p class="lead"><strong>job_title</strong> <%=@employee.job_title %></p>
+          <p class="lead"><strong>date_of_joining</strong> <%=@employee.date_of_joining %></p>
+        </div>
+      </div>
+
+
+      <% if @employee.documents.present? %>
+        <div class="row mt-5 mb-3">
+          <h2 class="text-center">Employee Document</h2>
+          <%  @employee.documents.each do |document| %>
+            <div class="card  ">
+              <div class="card-body body-control">
+                <div class="row">
+                  <% if document.image.attached? %>
+                  <div class="col-lg-4 mx-auto mb-2">
+                    <%= image_tag document.image ,class:"img-fluid  mt-5" %>
+                  </div>
+                  <% end %>
+                  <div class="col-lg-4 mb-2">
+                    <p class="lead"><%= document.name %></p>
+                  </div>
+                  <div class="col-lg-4 mt-2">
+                    <p class="lead"> <%= document.doc_type %></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+
+      <%= link_to 'Back to Employees list',employees_path,class:"btn btn-outline-secondary text-dark rounded-0 w-5 mt-3 " %>  
+      <%= link_to'Edit  Employee Details ',edit_employee_path(@employee),class:"btn btn-outline-primary mt-3 " %>
+    </div>
+  </div>
+</div>
+
